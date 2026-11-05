@@ -1,0 +1,577 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HEDA | Private Access</title>
+
+<style>
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+body {
+
+    min-height: 100vh;
+
+    background: #08090d;
+
+    color: #e8e8ed;
+
+    font-family: monospace;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+}
+
+.container {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    border: 1px solid #292b35;
+
+    background: #101117;
+
+    padding: 30px 24px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 15px 60px #0008;
+
+}
+
+.header {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+.logo {
+
+    font-size: 30px;
+
+    font-weight: bold;
+
+    letter-spacing: 7px;
+
+    color: #fff;
+
+}
+
+.subtitle {
+
+    color: #777987;
+
+    font-size: 11px;
+
+    margin-top: 10px;
+
+    letter-spacing: 3px;
+
+}
+
+.progress {
+
+    height: 3px;
+
+    background: #292b35;
+
+    margin-bottom: 30px;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+}
+
+.progress-bar {
+
+    height: 100%;
+
+    width: 0%;
+
+    background: #a58cff;
+
+    transition: width .3s;
+
+}
+
+.step-info {
+
+    color: #898b9a;
+
+    font-size: 11px;
+
+    margin-bottom: 15px;
+
+}
+
+.question {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    margin-bottom: 25px;
+
+    color: #fff;
+
+}
+
+input {
+
+    width: 100%;
+
+    padding: 15px;
+
+    background: #090a0f;
+
+    border: 1px solid #343642;
+
+    color: white;
+
+    outline: none;
+
+    border-radius: 6px;
+
+    font-family: monospace;
+
+    font-size: 15px;
+
+    margin-bottom: 15px;
+
+}
+
+input:focus {
+
+    border-color: #a58cff;
+
+}
+
+button {
+
+    width: 100%;
+
+    padding: 15px;
+
+    background: #a58cff;
+
+    color: #09090d;
+
+    border: none;
+
+    border-radius: 6px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    font-family: monospace;
+
+    transition: .2s;
+
+}
+
+button:hover {
+
+    background: #b9a7ff;
+
+}
+
+.error {
+
+    color: #ff6868;
+
+    font-size: 12px;
+
+    margin-top: 15px;
+
+    min-height: 16px;
+
+}
+
+.hidden {
+
+    display: none;
+
+}
+
+.success {
+
+    text-align: center;
+
+}
+
+.success h1 {
+
+    font-size: 25px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+
+}
+
+.success .welcome {
+
+    color: #a58cff;
+
+    font-size: 12px;
+
+    margin-bottom: 30px;
+
+}
+
+.key-section {
+
+    text-align: left;
+
+    margin-top: 25px;
+
+}
+
+.key-title {
+
+    color: #a58cff;
+
+    font-size: 12px;
+
+    margin-bottom: 10px;
+
+}
+
+.key-content {
+
+    background: #090a0f;
+
+    border: 1px solid #30313d;
+
+    border-radius: 6px;
+
+    padding: 14px;
+
+    color: #d6d1e9;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    white-space: pre-wrap;
+
+    overflow-wrap: anywhere;
+
+    margin-bottom: 12px;
+
+}
+
+.copy-btn {
+
+    padding: 10px;
+
+    font-size: 11px;
+
+    background: #252331;
+
+    color: #c7baff;
+
+    border: 1px solid #49415e;
+
+}
+
+.footer {
+
+    text-align: center;
+
+    color: #555764;
+
+    font-size: 10px;
+
+    margin-top: 30px;
+
+    letter-spacing: 2px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div class="logo">HEDA</div>
+
+        <div class="subtitle">PRIVATE ACCESS TERMINAL</div>
+
+    </div>
+
+    <div id="verification">
+
+        <div class="progress">
+
+            <div class="progress-bar" id="progressBar"></div>
+
+        </div>
+
+        <div class="step-info" id="stepInfo">
+
+            VERIFICATION 01 / 04
+
+        </div>
+
+        <div class="question" id="question">
+
+            Concierge of all?
+
+        </div>
+
+        <form id="answerForm">
+
+            <input
+
+                type="text"
+
+                id="answer"
+
+                placeholder="Enter your answer..."
+
+                autocomplete="off"
+
+                required
+
+            >
+
+            <button type="submit">VERIFY ACCESS →</button>
+
+        </form>
+
+        <div class="error" id="error"></div>
+
+    </div>
+
+    <div class="success hidden" id="result">
+
+        <h1>WELCOME BACK HEDA</h1>
+
+        <div class="welcome">IDENTITY VERIFIED // ACCESS GRANTED</div>
+
+        <div class="key-section">
+
+            <div class="key-title">YOUR KEY</div>
+
+            <div class="key-content" id="mainKey">IHN1cmZhY2UgbGVuZ3RoI
+
+GRlbWlzZSBmaW5hbCBiYXR0bGUgcmFpbiBuZXN0IGZh
+
+dm9yaXRlIGVsaXRlIHJvb2tpZSBtZXNzYWdlIHNldmVuIGV
+
+4YW1wbGUgY2FwYWJsZSBiYWJ5IHNwZW5k</div>
+
+            <button class="copy-btn" onclick="copyText('mainKey', this)">
+
+                COPY YOUR KEY
+
+            </button>
+
+        </div>
+
+        <div class="key-section">
+
+            <div class="key-title">HASH 2</div>
+
+            <div class="key-content" id="hashKey">ZHJlc3MgYXJvdW5kIG93biBwZXQgZXhlY3V0ZSBtaXhlZCB3aWR0aCB0aGVuIHF1YXJ0ZXIgY29udHJvbCBnZW5pdXMgZWxlcGhhbnQ=</div>
+
+            <button class="copy-btn" onclick="copyText('hashKey', this)">
+
+                COPY HASH 2
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="footer">
+
+        ARCANE // PRIVATE ENVIRONMENT
+
+    </div>
+
+</div>
+
+<script>
+
+const puzzles = [
+
+    {
+
+        question: "Concierge of all?",
+
+        answer: "prime"
+
+    },
+
+    {
+
+        question: "Input formula",
+
+        answer: "q=c+e+r"
+
+    },
+
+    {
+
+        question: "Odd number",
+
+        answer: "09044205903"
+
+    },
+
+    {
+
+        question: "Admin. =",
+
+        answer: "heda"
+
+    }
+
+];
+
+let currentStep = 0;
+
+const form = document.getElementById("answerForm");
+
+const input = document.getElementById("answer");
+
+const question = document.getElementById("question");
+
+const stepInfo = document.getElementById("stepInfo");
+
+const error = document.getElementById("error");
+
+const progressBar = document.getElementById("progressBar");
+
+function updatePuzzle() {
+
+    question.textContent = puzzles[currentStep].question;
+
+    stepInfo.textContent =
+
+        `VERIFICATION 0${currentStep + 1} / 04`;
+
+    progressBar.style.width =
+
+        `${(currentStep / puzzles.length) * 100}%`;
+
+    input.value = "";
+
+    error.textContent = "";
+
+    input.focus();
+
+}
+
+form.addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const userAnswer = input.value.trim().toLowerCase();
+
+    const correctAnswer = puzzles[currentStep].answer.toLowerCase();
+
+    if (userAnswer === correctAnswer) {
+
+        currentStep++;
+
+        if (currentStep === puzzles.length) {
+
+            document.getElementById("verification")
+
+                .classList.add("hidden");
+
+            document.getElementById("result")
+
+                .classList.remove("hidden");
+
+            progressBar.style.width = "100%";
+
+        } else {
+
+            updatePuzzle();
+
+        }
+
+    } else {
+
+        error.textContent = "ACCESS DENIED. TRY AGAIN.";
+
+        input.value = "";
+
+        input.focus();
+
+    }
+
+});
+
+async function copyText(elementId, button) {
+
+    const content = document.getElementById(elementId).textContent;
+
+    try {
+
+        await navigator.clipboard.writeText(content);
+
+        button.textContent = "COPIED ✓";
+
+        setTimeout(() => {
+
+            button.textContent =
+
+                elementId === "mainKey"
+
+                ? "COPY YOUR KEY"
+
+                : "COPY HASH 2";
+
+        }, 1500);
+
+    } catch (err) {
+
+        button.textContent = "COPY UNAVAILABLE";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
